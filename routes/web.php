@@ -21,3 +21,5 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/yonetim/moduler', [App\Http\Controllers\ModulerController::class, "index"]);
