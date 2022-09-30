@@ -5,16 +5,17 @@
         <div class="nk-sidebar">           
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
-                    <li class="nav-label">Dashboard</li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="./index.html">Home 1</a></li>
-                            <!-- <li><a href="./index-2.html">Home 2</a></li> -->
-                        </ul>
-                    </li>
+                    <li class="nav-label">Sayfalar</li>
+                    @isset($moduler)
+                        @foreach ($moduler as $modul)
+                        <li>
+                            <a href="#" aria-expanded="false">
+                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">{{$modul->baslik}}</span>
+                            </a>
+                        </li>
+                        @endforeach
+                    @endisset
+                    
                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
@@ -34,7 +35,7 @@
                             <li><a href="layout-fixed-sidebar.html">Fixed Sidebar</a></li>
                         </ul>
                     </li>
-                    <li class="nav-label">Apps</li>
+                    {{-- <li class="nav-label">Apps</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-envelope menu-icon"></i> <span class="nav-text">Email</span>
@@ -149,7 +150,7 @@
                                 </ul>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>

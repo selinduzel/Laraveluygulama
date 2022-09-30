@@ -2,17 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModulerController;
+use App\Http\Controllers\AdminYonetim;
 
 
-Route::get('/', function () {
+Route::get('/', function ()
+{
     return view('welcome');
 });
 
-
-
-Route::get('/yonetim', function () {
-    return view('admin.include.home');
-});
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -23,5 +20,6 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::get('/yonetim', [AdminYonetim::class,'home']);
 Route::get('/yonetim/moduler', [App\Http\Controllers\ModulerController::class, "index"])->name('moduler');
 Route::post('/yonetim/modul-ekle',[ModulerController::class,"modulekle"])->name('modul-ekle');
