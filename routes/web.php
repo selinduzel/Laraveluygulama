@@ -20,6 +20,9 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/yonetim', [AdminYonetim::class,'home']);
-Route::get('/yonetim/moduler', [App\Http\Controllers\ModulerController::class, "index"])->name('moduler');
+Route::get('/yonetim', [AdminYonetim::class,'home'])->name('home');
+Route::get('/yonetim/moduler', [ModulerController::class, "index"])->name('moduler');
 Route::post('/yonetim/modul-ekle',[ModulerController::class,"modulekle"])->name('modul-ekle');
+Route::get('/yonetim/liste/{modul}', [AdminYonetim::class, "liste"])->name('liste');
+Route::get('/yonetim/ekle/{modul}', [AdminYonetim::class, "ekle"])->name('ekle');
+Route::post('/yonetim/ekle-post/{modul}', [AdminYonetim::class, "eklePost"])->name('eklePost');

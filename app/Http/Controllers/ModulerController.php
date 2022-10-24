@@ -28,8 +28,8 @@ class ModulerController extends Controller
     {
         $request->validate([
             'baslik' => 'required|string',
-
         ]);
+        
         $baslik = $request->baslik;
         $seflink = Str::of($baslik)->slug('');
         $kontrol = moduler::whereSeflink($seflink)->first();

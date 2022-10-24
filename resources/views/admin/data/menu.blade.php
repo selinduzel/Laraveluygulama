@@ -9,7 +9,7 @@
                     @isset($moduler)
                         @foreach ($moduler as $modul)
                         <li>
-                            <a href="#" aria-expanded="false">
+                            <a href="{{route('liste',$modul->seflink)}}" aria-expanded="false">
                                 <i class="icon-speedometer menu-icon"></i><span class="nav-text">{{$modul->baslik}}</span>
                             </a>
                         </li>
