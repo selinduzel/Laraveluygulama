@@ -20,10 +20,12 @@ class AdminYonetim extends Controller
     
     public function liste($modul)
     {
-      $kontrol=Moduler::whereDurum(1)->whereSeflink($modul)->first();
-      if($kontrol)
+      $dinamikModul=Moduler::whereDurum(1)->whereSeflink($modul)->first();
+      if($dinamikModul)
       {
-        return view("admin.include.liste");
+        $dinamikModel="App\Models\\".ucfirst($dinamikModul->seflink);
+        $veriler=$dinamikModel::get();
+        return view("admin.include.liste", compact(['veriler','dinamikModul']));
       }
       else 
       {
@@ -52,7 +54,7 @@ class AdminYonetim extends Controller
         $modulBilgisi=Moduler::whereDurum(1)->whereSeflink($modul)->first();
         if($modulBilgisi)
         {
-          $modelDosyaAdi=ucfirst($modulBilgisi->seflink);//Kurumsal
+          $modelDosyaAdi=ucfirst($modulBilgisi->seflink);//Hizmetler
           $request->validate([
             'baslik' => 'required|string',
             'kategori' => 'required',
