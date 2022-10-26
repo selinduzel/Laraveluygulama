@@ -1,6 +1,6 @@
 @extends('admin.tema')
 @section('admintitle')
-    Ekleme İşlemleri-Laravel 8 Admin Paneli Uygulaması
+    Düzenleme İşlemleri-Laravel 8 Admin Paneli Uygulaması
 @endsection
 @section('css')
     <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
@@ -19,7 +19,7 @@
                         <div class="card-body">
                             <h4 class="card-title">{{ $modulBilgisi->baslik }}</h4>
                             <div class="basic-form">
-                                <form action="{{route('eklePost',$modulBilgisi->seflink)}}" method="post" enctype="multipart/form-data">
+                                <form action="{{route('duzenlePost',[$modulBilgisi->seflink,$veriler->id])}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
                                         <label> Kategori </label>
@@ -33,15 +33,14 @@
 
                                         </select>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group"> 
                                         <label>Başlık</label>
                                         <div class="form-group">
-                                            <input type="text" class="form-control input-default" placeholder="Başlık"
-                                                name="baslik" required>
+                                            <input type="text" class="form-control input-default" placeholder="Başlık"name="baslik" value="{{$veriler->baslik}}" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Açıklama</label>
-                                            <textarea name="metin" id="editor" class="summernote"></textarea>
+                                            <textarea name="metin" id="editor" class="summernote"{{$veriler->metin}}</textarea>
                                         </div>
                                         <div class="form-group">
                                             <label> Resim </label>
@@ -52,17 +51,17 @@
                                             <div class="form-group">
                                                 <label> Anahtar </label>
                                                 <input type="text" class="form-control input-default"
-                                                    placeholder="Anahtar" name="anahtar">
+                                                    placeholder="Anahtar" name="anahtar" value="{{$veriler->anahtar}}">
                                             </div>
                                             <div class="form-group">
                                                 <label>Description</label>
                                                 <input type="text" class="form-control input-default"
-                                                    placeholder="Description" name="description">
+                                                    placeholder="Description" name="description" value="{{$veriler->description}}">
                                             </div>
                                             <div class="form-group">
                                                 <label>Sıra No</label>
                                                 <input type="number" class="form-control input-default"
-                                                    placeholder="Sıra No" name="sirano" required>
+                                                    placeholder="Sıra No" name="sirano" required value="{{$veriler->sirano}}">
                                             </div>
                                             <div class="form-group">
                                                 <input type="submit" class="btn btn-primary" name="gonder" value="KAYDET">

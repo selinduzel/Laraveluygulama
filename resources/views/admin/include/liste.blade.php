@@ -9,15 +9,19 @@
     <div class="content-body">
         <div class="container-fluid">
             <div class="row">
-                <div class= "col-md-12" >
-                <a href="{{route('ekle',$dinamikModul->seflink)}}" class="btn btn-success" style="float:right; color:#fff;">YENİ EKLE</a>
+                <div class="col-md-12">
+                    <a href="{{ route('ekle', $dinamikModul->seflink) }}" class="btn btn-success"
+                        style="float:right; color:#fff;">YENİ EKLE</a>
+                </div>
             </div>
-            </div>
+            @if (session('basarili'))
+            <div class="alert alert-success">{{ session('basarili') }}</div>
+        @endif
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">{{$dinamikModul->baslik}} Listesi</h4>
+                            <h4 class="card-title">{{ $dinamikModul->baslik }} Listesi</h4>
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered zero-configuration">
                                     <thead>
@@ -32,18 +36,28 @@
                                     </thead>
                                     <tbody>
                                         @if ($veriler)
-                                           @foreach ($veriler as $bilgiler)
-                                            <tr>
-                                                <td>{{$loop->iteration}}</td>
-                                                <td>{{$bilgiler->baslik}}</td>
-                                                <td>{{mb_substr(strip_tags($bilgiler->metin),0,120,'UTF-8')}}...</td>
-                                                <td>{{$bilgiler->updated_at}}</td>
-                                                <td>-</td>
-                                                <td>
-                                                    <a href="#" class="btn btn-primary">Düzenle</a>
-                                                    <a href="#" class="btn btn-danger">Sil</a>
-                                                </td>
-                                            </tr>
+                                            @foreach ($veriler as $bilgiler)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $bilgiler->baslik }}</td>
+                                                    <td>{{ mb_substr(strip_tags($bilgiler->metin), 0, 120, 'UTF-8') }}...</td>
+                                                    <td>{{ $bilgiler->updated_at }}</td>
+                                                    <td>
+                                                        @if ($bilgiler->durum == 1)
+                                                            <a href="{{ route('durum', [$dinamikModul->seflink, $bilgiler->id]) }}"
+                                                                class="btn btn-success" style="color:#fff";>Aktif</a>
+                                                        @else
+                                                            <a href="{{ route('durum', [$dinamikModul->seflink, $bilgiler->id]) }}"
+                                                                class="btn btn-danger">Pasif</a>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('duzenle', [$dinamikModul->seflink, $bilgiler->id]) }}"
+                                                            class="btn btn-primary">Düzenle</a>
+                                                        <a href="{{ route('sil', [$dinamikModul->seflink, $bilgiler->id]) }}"
+                                                            class="btn btn-danger">Sil</a>
+                                                    </td>
+                                                </tr>
                                             @endforeach
                                         @endif
                                     </tbody>

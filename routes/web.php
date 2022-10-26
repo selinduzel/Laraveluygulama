@@ -26,3 +26,7 @@ Route::post('/yonetim/modul-ekle',[ModulerController::class,"modulekle"])->name(
 Route::get('/yonetim/liste/{modul}', [AdminYonetim::class, "liste"])->name('liste');
 Route::get('/yonetim/ekle/{modul}', [AdminYonetim::class, "ekle"])->name('ekle');
 Route::post('/yonetim/ekle-post/{modul}', [AdminYonetim::class, "eklePost"])->name('eklePost');
+Route::get('/yonetim/duzenle/{modul}/{id}', [AdminYonetim::class, "duzenle"])->name('duzenle');
+Route::post('/yonetim/duzenle-post/{modul}/{id}', [AdminYonetim::class, "duzenlePost"])->name('duzenlePost');
+Route::get('/yonetim/sil/{modul}/{id}', [AdminYonetim::class, "sil"])->name('sil');
+Route::get('/yonetim/durum/{modul}/{id}', [AdminYonetim::class, "durum"])->name('durum');
