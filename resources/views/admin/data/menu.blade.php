@@ -15,6 +15,10 @@
                         </li>
                         @endforeach
                     @endisset
+                    <li>
+                        <a href="{{route('ayarlar')}}" aria-expanded="false">
+                            <i class="icon-settings menu-icon"></i><span class="nav-text">Ayarlar</span>
+                        </a>
                     
                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
